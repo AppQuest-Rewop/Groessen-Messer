@@ -1,0 +1,93 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Hoehenmessen" >
+
+    <TextView
+        android:id="@+id/alpha"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp"
+        android:padding="5dp"
+        android:text="@string/alpha"
+        android:textSize="26sp" />
+
+    <TextView
+        android:id="@+id/alphatxt"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_alignBaseline="@+id/alpha"
+        android:layout_alignBottom="@+id/alpha"
+        android:layout_toLeftOf="@+id/alpha"
+        android:padding="5dp"
+        android:textSize="26sp"
+        android:text="@string/alphatxt" />
+
+    <TextView
+        android:id="@+id/beta"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/alpha"
+        android:layout_below="@+id/alpha"
+        android:padding="5dp"
+        android:text="@string/beta"
+        android:textSize="26sp" />
+
+    <TextView
+        android:id="@+id/betatxt"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_alignBaseline="@+id/beta"
+        android:layout_alignBottom="@+id/beta"
+        android:layout_alignLeft="@+id/alphatxt"
+        android:padding="5dp"
+        android:textSize="26sp"
+        android:text="@string/betatxt" />
+
+    <TextView
+        android:id="@+id/atxt"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/betatxt"
+        android:layout_below="@+id/betatxt"
+        android:padding="5dp"
+        android:textSize="26sp"
+        android:text="@string/atxt" />
+
+    <TextView
+        android:id="@+id/btxt"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/atxt"
+        android:layout_below="@+id/atxt"
+        android:padding="5dp"
+        android:textSize="26sp"
+        android:text="@string/btxt" />
+
+    <TextView
+        android:id="@+id/b"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignBaseline="@+id/btxt"
+        android:layout_alignBottom="@+id/btxt"
+        android:layout_alignLeft="@+id/alpha"
+        android:padding="5dp"
+        android:textSize="26sp"
+        android:text="@string/b" />
+
+    <EditText
+        android:id="@+id/a"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/atxt"
+        android:layout_toRightOf="@+id/atxt"
+        android:ems="10"
+        android:inputType="number|numberDecimal"
+        android:padding="10dp"
+        android:textSize="26sp" />
+
+</RelativeLayout>

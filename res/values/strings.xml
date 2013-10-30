@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Groessen-Messer</string>
+    <string name="action_settings">Settings</string>
+    <string name="alpha">0</string>
+    <string name="alphatxt">alpha:</string>
+    <string name="betatxt">beta:</string>
+    <string name="beta">0</string>
+    <string name="atxt">a:</string>
+    <string name="btxt">b:</string>
+    <string name="b">0</string>
+
+</resources>

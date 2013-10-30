@@ -1,0 +1,25 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Winkelmessen" >
+    
+    <SurfaceView
+        android:id="@+id/kameraSicht"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </SurfaceView>
+	
+	<ch.rewop.groessenmesser.CustomView
+        android:id="@+id/greenline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+    />    
+    
+    
+    
+
+
+</FrameLayout>
