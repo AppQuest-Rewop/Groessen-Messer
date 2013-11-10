@@ -42,7 +42,6 @@ public class Hoehemessen extends Activity {
 		winkel1 = extras.getFloat("winkel1");
 		winkel2 = extras.getFloat("winkel2");
 		gamma = 180 - (winkel1+winkel2);
-		Toast.makeText(this, ""+winkel1, Toast.LENGTH_SHORT).show();
 		
 		alpha = (TextView)findViewById(R.id.alpha);
 		alpha.setText(""+(int)winkel1);
@@ -54,9 +53,14 @@ public class Hoehemessen extends Activity {
 
 			@Override
 			public void afterTextChanged(Editable arg0) {
-				abstand = Double.parseDouble(a.getText().toString());
-				result = Math.round((abstand/Math.tan(Math.toRadians((double)winkel1)))+(abstand/Math.tan(Math.toRadians((double)gamma))));
-				b.setText(""+result);
+				try{
+					abstand = Double.parseDouble(a.getText().toString());
+					result = Math.round((abstand/Math.tan(Math.toRadians((double)winkel1)))+(abstand/Math.tan(Math.toRadians((double)gamma))));
+					b.setText(""+result);
+				}catch(Exception e){
+					Log.e(INPUT_SERVICE, e.toString());
+					b.setText("");
+				}
 			}
 			@Override
 			public void beforeTextChanged(CharSequence arg0, int arg1,
