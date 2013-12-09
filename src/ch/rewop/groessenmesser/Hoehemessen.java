@@ -2,6 +2,8 @@ package ch.rewop.groessenmesser;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
@@ -9,11 +11,15 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Hoehemessen extends Activity {
+	private static final int SCAN_QR_CODE_REQUEST_CODE = 0;
+	
 	private float winkel1;
 	private float winkel2;
 	private float gamma;
@@ -28,9 +34,29 @@ public class Hoehemessen extends Activity {
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.hoehenmessen, menu);
-		return true;
+		MenuItem menuItem = menu.add("In Logbuch eintragen");
+		menuItem.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				Intent intent = new Intent(
+						"com.google.zxing.client.android.SCAN");
+				intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
+				startActivityForResult(intent, SCAN_QR_CODE_REQUEST_CODE);
+				return false;
+			}
+		});
+		return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		if (requestCode == SCAN_QR_CODE_REQUEST_CODE) {
+			if (resultCode == RESULT_OK) {
+				String qrCode = intent.getStringExtra("SCAN_RESULT");
+				sendlog(qrCode);
+			}
+		}
 	}
 	
 	@Override
@@ -73,5 +99,23 @@ public class Hoehemessen extends Activity {
 		});
 		
 	}
+	
+	//eintrag in logbuch
+		private void sendlog(String qrCode) {
+			Intent intent = new Intent("ch.appquest.intent.LOG");
+			 
+			if (getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).isEmpty()) {
+				Toast.makeText(this, "Logbook App not Installed", Toast.LENGTH_LONG).show();
+			return;
+			}
+			
+			TextView codeText = (TextView) findViewById(R.id.b);
+			String code = codeText.getText().toString();
+			 
+			intent.putExtra("ch.appquest.taskname", "REWOP.Groessen-Messer");
+			intent.putExtra("ch.appquest.logmessage", qrCode + ": " + code);
+			 
+			startActivity(intent);
+		}
 
 }
